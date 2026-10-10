@@ -246,7 +246,8 @@ def main():
                 '  pause\r\n  exit /b 1\r\n)\r\n'
                 f'start "" flashplayer_32_sa.exe "{a.name}"\r\n')
     print("Start the game with", bat if os.path.exists(projector) else bat + " (after adding flashplayer_32_sa.exe)")
-    print("Note: the modded game keeps its own save data and does not unlock Steam achievements.")
+    print("Note: the modded game uses the same save as the Steam version (don't run both at once). Steam\n"
+          "achievements you unlock are granted the next time you start the normal Steam version.")
 
 
 def run():

@@ -44,8 +44,11 @@ Playing
 - Walk up to an item, trinket, card or pill to see its description.
 - F2 shows/hides the descriptions.
 - Pills show "Unidentified Pill" until you have taken a pill of that color.
-- The modded game keeps its own save file (separate from the Steam version), and Steam
-  achievements are not unlocked while playing it.
+- The modded game uses the same save as the Steam version: your unlocks and progress carry
+  over in both directions. Don't run both versions at the same time, or one may overwrite the
+  other's progress.
+- Steam achievements you unlock while playing the modded game are granted the next time you
+  start the normal Steam version.
 - Your Steam installation is never modified. To uninstall, delete the "EID Flash" folder.
 
 

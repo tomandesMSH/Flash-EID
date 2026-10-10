@@ -92,8 +92,16 @@ Notes:
 
 - If the game's exe has the "Run as administrator" compatibility flag (common for this game), only processes
   running elevated can read the original. The patcher avoids this by launching a copy from a temporary folder.
-- The modded game keeps its own save data (Flash `SharedObject`), separate from the Steam save.
-- Steam achievements don't fire, because they go through the Zinc wrapper (`mdm.Process.create`).
+- Saves are shared with the Steam version. The game stores everything (stats, unlocks in `so.data.lock`, settings)
+  in `SharedObject.getLocal("so", "/")`; the `"/"` path makes it one file for every local Flash player
+  (`%APPDATA%\Macromedia\Flash Player\#SharedObjects\<id>\localhost\so.sol`), used by both Zinc's built-in player
+  and the standalone projector. Running both at once can lose progress (each writes its in-memory copy back).
+- `serial.txt` in the game folder is the Steam version's backup of the save, written and read through Zinc's
+  `mdm.FileSystem` (`aloc` / `aloc2`). The modded game can't update it; the Steam version rewrites it from the
+  shared save on its next run, and only merges unlocks from it (never removes any).
+- Steam achievements go through Zinc (`callit` → `mdm.Process.create` → `FlashAchievements.exe`), so they don't fire
+  in the modded game. The Steam version sends all unlocked achievements on every startup, so they are granted the
+  next time the normal game is started.
 
 ## Description data
 
