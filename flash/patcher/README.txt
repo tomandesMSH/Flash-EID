@@ -11,23 +11,32 @@ Requirements
 ------------
 - Windows
 - The Binding of Isaac (Flash) installed, e.g. from Steam
-- Python 3.8 or newer (https://www.python.org/downloads/), no extra packages needed
+- For the script version only: Python 3.8 or newer (https://www.python.org/downloads/),
+  no extra packages needed
 
 
 Install
 -------
+With the exe (EID_Flash_Patcher.exe):
+1. Put EID_Flash_Patcher.exe in an empty folder and double-click it.
+2. A game window appears for a few seconds while the patcher reads the game, then closes.
+   The patcher creates an "EID Flash" folder next to itself.
+3. Start the game with "EID Flash\Play EID Flash.bat".
+
+With the Python script (this zip):
 1. Unzip this folder anywhere.
 2. Open a command prompt in this folder and run:
 
        python eid_flash_patcher.py --get-projector
 
-   A game window appears for a few seconds while the patcher reads the game, then closes.
-   Use --game "<folder with Isaac.exe>" if the game is not in your Steam library.
 3. Start the game with "EID Flash\Play EID Flash.bat".
 
---get-projector downloads Adobe's official Flash Player 32 projector (flashplayer_32_sa.exe) from
-fpdownload.macromedia.com and checks its fingerprint. You can also put your own copy into the
-"EID Flash" folder instead.
+If the game is not in your Steam library, add --game "<folder with Isaac.exe>"
+(for the exe: run it from a command prompt with that option).
+
+The exe and --get-projector download Adobe's official Flash Player 32 projector
+(flashplayer_32_sa.exe) from fpdownload.macromedia.com and check its fingerprint. You can also put
+your own copy into the "EID Flash" folder instead (exe: use --no-projector).
 
 
 Playing

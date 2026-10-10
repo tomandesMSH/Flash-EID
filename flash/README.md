@@ -54,6 +54,7 @@ pixel for pixel at 2x scale.
 | `tools/make_payload.py` | Compiles the EID AS2 code on its own and writes the payload. |
 | `tools/build.py` | Developer build: makes the payload and applies it with the patcher. |
 | `tools/package.py` | Zips `patcher/` into `EID_Flash_<version>.zip` for release. |
+| `tools/build_exe.py` | Builds `EID_Flash_Patcher.exe` (PyInstaller, single file, payload bundled). |
 | `tools/test/` | `keys.ps1` and `shot.ps1`: send keys to the game window and screenshot it, for automated in-game tests. |
 | `tools/research/` | Scripts used to extract item names from the game and effect text from the wiki (items, trinkets, cards, pills). |
 
@@ -77,7 +78,11 @@ python flash/tools/swfdump.py            # once: launches a copy of the game bri
 python flash/tools/build.py              # refreshes patcher/eid_flash_payload.json -> <work>/build/isaac_eid.swf
 python flash/tools/build.py --debug      # -> <work>/build/isaac_eid_debug.swf (test hooks, payload not refreshed)
 python flash/tools/package.py            # -> <work>/build/EID_Flash_<version>.zip (patcher + payload + README)
+python flash/tools/build_exe.py          # -> <work>/build/exe/EID_Flash_Patcher.exe (pip install pyinstaller)
 ```
+
+Release: bump `VERSION`, run `build.py`, `package.py` and `build_exe.py`, commit the refreshed payload, then attach
+the exe and the zip to a GitHub release tagged `v<VERSION>`.
 
 Then open the built SWF with `flashplayer_32_sa.exe`. F2 toggles the overlay. Decompiling the game (FFDec
 `-export script`) is only needed for research; the build never recompiles game code.

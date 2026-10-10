@@ -3,7 +3,7 @@
 Builds a modded copy of the game from YOUR OWN installation. No game files are distributed: this script
 reads the game from your PC and adds EID's code and graphics (eid_flash_payload.json, next to this script).
 
-Usage (Windows, Python 3.8+, no extra packages):
+Usage: double-click EID_Flash_Patcher.exe (it downloads the projector too), or with Python 3.8+ (no extra packages):
     python eid_flash_patcher.py                    # find the Steam install, build "EID Flash/isaac_eid.swf"
     python eid_flash_patcher.py --game "D:/Games/The Binding Of Isaac"
     python eid_flash_patcher.py --swf isaac.swf    # patch an already extracted SWF instead
@@ -29,7 +29,8 @@ import time
 import urllib.request
 import zlib
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+FROZEN = getattr(sys, "frozen", False)  # running as the PyInstaller exe (EID_Flash_Patcher.exe)
+HERE = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))  # the exe bundles the payload
 PAYLOAD = os.path.join(HERE, "eid_flash_payload.json")
 STEAM_DIRS = [r"C:\Program Files (x86)\Steam", r"C:\Program Files\Steam"]
 GAME_SUBDIR = os.path.join("steamapps", "common", "The Binding Of Isaac")
@@ -203,13 +204,17 @@ def get_projector(out_dir):
 
 
 def main():
+    # the exe writes next to itself (double-click), the script into the current folder
+    base = os.path.dirname(sys.executable) if FROZEN else os.getcwd()
     ap = argparse.ArgumentParser(description="Build EID for The Binding of Isaac (Flash) from your own copy of the game.")
     ap.add_argument("--game", help="game folder containing Isaac.exe (default: Steam install)")
     ap.add_argument("--swf", help="patch this already extracted game SWF instead of reading it from the game")
-    ap.add_argument("--out", default=os.path.join(os.getcwd(), "EID Flash"), help="output folder")
+    ap.add_argument("--out", default=os.path.join(base, "EID Flash"), help="output folder")
     ap.add_argument("--payload", default=PAYLOAD, help=argparse.SUPPRESS)
     ap.add_argument("--name", default="isaac_eid.swf", help=argparse.SUPPRESS)
-    ap.add_argument("--get-projector", action="store_true", help="download Adobe's Flash Player 32 projector")
+    ap.add_argument("--get-projector", action="store_true", default=FROZEN,
+                    help="download Adobe's Flash Player 32 projector (default for the exe)")
+    ap.add_argument("--no-projector", dest="get_projector", action="store_false", help="don't download the projector")
     ap.add_argument("--wait", type=int, default=30, help="seconds to wait for the game to load (default 30)")
     a = ap.parse_args()
 
@@ -235,7 +240,7 @@ def main():
 
     projector = get_projector(a.out) if a.get_projector else os.path.join(a.out, "flashplayer_32_sa.exe")
     bat = os.path.join(a.out, "Play EID Flash.bat")
-    with open(bat, "w", newline="\r\n") as f:
+    with open(bat, "w", newline="") as f:
         f.write('@echo off\r\ncd /d "%~dp0"\r\nif not exist flashplayer_32_sa.exe (\r\n'
                 '  echo Put flashplayer_32_sa.exe in this folder, or run the patcher with --get-projector.\r\n'
                 '  pause\r\n  exit /b 1\r\n)\r\n'
@@ -244,5 +249,25 @@ def main():
     print("Note: the modded game keeps its own save data and does not unlock Steam achievements.")
 
 
+def run():
+    """Entry point; when started by double-click (exe), keep the console window open to show the result."""
+    code = 0
+    try:
+        main()
+    except SystemExit as e:
+        if e.code not in (None, 0):
+            print(e.code if isinstance(e.code, str) else f"Exited with code {e.code}")
+            code = 1
+    except Exception as e:  # show unexpected errors instead of a vanishing window
+        print("Error:", e)
+        code = 1
+    if FROZEN:
+        try:
+            input("\nPress Enter to close this window...")
+        except EOFError:
+            pass
+    sys.exit(code)
+
+
 if __name__ == "__main__":
-    main()
+    run()
