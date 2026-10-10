@@ -1,6 +1,8 @@
 // ---------------- EID Flash: TEST-ONLY hooks (built only with build.py --debug) ----------------
 // F9: teleport to this floor's treasure room using the game's own room teleport (tar/telf).
 _root.createEmptyMovieClip("eidDebug",1048501);
+_root.eidDebug.createTextField("st",1,4,455,632,18);
+_root.eidDebug.st.textColor = 0xFFFF00;
 _root.eidDebug.onEnterFrame = function()
 {
    if(Key.isDown(120))
@@ -64,6 +66,7 @@ _root.eidDebug.onEnterFrame = function()
    {
       this.down7 = false;
    }
+   this.st.text = "full=" + _root.so.data.full + " displayState=" + Stage.displayState + " eidHost=" + _root.fullf.eidHost + " scaleMode=" + Stage.scaleMode + " fra=" + _root.fra;
    // F6: identify pill color 1 as Tears Up (good variant of effect 9)
    if(Key.isDown(117))
    {

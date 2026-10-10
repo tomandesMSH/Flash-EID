@@ -42,6 +42,7 @@ pixel for pixel at 2x scale.
 |---|---|
 | `descriptions/en_us.lua` | Collectible, trinket, card and pill descriptions in EID's format and markup (`{"ID", "Name", "Description"}`). |
 | `descriptions/item_data.lua` | Item type (passive/active/familiar) and charges; mappings from the game's internal card and pill values to EID's card and pill IDs. |
+| `as2/eid_host.as` | Projector compatibility: replaces the game's Zinc-only fullscreen (`fullf`) and quit (`nooo`) with Flash Player equivalents (4:3 scaling, F key / Options toggle, saved setting). |
 | `as2/eid_flash.as` | Overlay and renderer (ActionScript 2). |
 | `as2/eid_debug.as` | Test-only hooks for `--debug` builds: F9 teleports to the treasure room, F8 cycles the pedestal item, F7 spawns test trinkets/cards/pills, F6 identifies pill color 1. |
 | `patcher/eid_flash_patcher.py` | The player-facing patcher: dumps the user's game, applies the payload, sets up the launcher. |

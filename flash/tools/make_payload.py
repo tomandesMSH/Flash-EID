@@ -98,7 +98,8 @@ def make(work, out, debug=False):
     tmp = os.path.join(work, "build", "payload")
     os.makedirs(tmp, exist_ok=True)
     eid_assets.build(tmp)
-    parts = [open(os.path.join(tmp, "eid_data.as"), encoding="utf-8").read(),
+    parts = [open(os.path.join(FLASH, "as2", "eid_host.as"), encoding="utf-8").read(),
+             open(os.path.join(tmp, "eid_data.as"), encoding="utf-8").read(),
              open(os.path.join(FLASH, "as2", "eid_flash.as"), encoding="utf-8").read()]
     if debug:
         parts.append(open(os.path.join(FLASH, "as2", "eid_debug.as"), encoding="utf-8").read())
