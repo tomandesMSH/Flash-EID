@@ -10,6 +10,13 @@ This is an unofficial port based on EID by Wofsauge and contributors. It is not 
 Rebirth / Afterbirth / Repentance. 
 For that, see the [original EID project](https://github.com/wofsauge/External-Item-Descriptions).
 
+## Screenshots
+| | |
+|---|---|
+| ![Super Bandage](screenshots/superbandage.png) | ![Odd Mushroom (Large)](screenshots/oddmushroom.png) |
+| ![Lucky Foot](screenshots/luckyfoot.png) | ![The Parasite](screenshots/parasite.png) |
+| ![Mom's Pearl (trinket)](screenshots/momspearl.png) | ![XII - The Hanged Man (card)](screenshots/hangedman.png) |
+
 ## Features
 - Descriptions for all 196 collectibles, 34 trinkets, 27 cards and all pills of the Flash game
 - Stat values checked against the game's own formulas
