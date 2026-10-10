@@ -203,6 +203,30 @@ def get_projector(out_dir):
     return path
 
 
+# ---------------------------------------------------------------- Steam launch option
+
+LAUNCHER = "EID Flash.exe"
+
+
+def copy_to_clipboard(text):
+    try:
+        subprocess.run(["clip"], input=text.encode("utf-16-le"), check=True)
+        return True
+    except (OSError, subprocess.CalledProcessError):
+        return False
+
+
+def show_steam_launch_option(out_dir):
+    """Print the Steam launch option that makes Play start EID Flash, and copy it to the clipboard."""
+    option = f'"{os.path.join(os.path.abspath(out_dir), LAUNCHER)}" %command%'
+    copied = os.name == "nt" and copy_to_clipboard(option)
+    print("\nTo start EID Flash with Steam's Play button, paste this into Steam" + (" (it is on your clipboard):" if copied else ":"))
+    print("\n  " + option + "\n")
+    print("Steam > Library > right-click The Binding of Isaac > Properties > General > Launch Options.\n"
+          "Clear the Launch Options again to play the normal game.")
+
+
+
 def main():
     # the exe writes next to itself (double-click), the script into the current folder
     base = os.path.dirname(sys.executable) if FROZEN else os.getcwd()
@@ -239,14 +263,14 @@ def main():
     print("Wrote", out)
 
     projector = get_projector(a.out) if a.get_projector else os.path.join(a.out, "flashplayer_32_sa.exe")
-    bat = os.path.join(a.out, "Play EID Flash.bat")
-    with open(bat, "w", newline="") as f:
-        f.write('@echo off\r\ncd /d "%~dp0"\r\nif not exist flashplayer_32_sa.exe (\r\n'
-                '  echo Put flashplayer_32_sa.exe in this folder, or run the patcher with --get-projector.\r\n'
-                '  pause\r\n  exit /b 1\r\n)\r\n'
-                f'start "" flashplayer_32_sa.exe "{a.name}"\r\n')
-    print("Start the game with", bat if os.path.exists(projector) else bat + " (after adding flashplayer_32_sa.exe)")
-    print("Note: the modded game uses the same save as the Steam version (don't run both at once). Steam\n"
+    launcher = os.path.join(a.out, LAUNCHER)  # starts the projector with isaac_eid.swf, ignores arguments
+    open(launcher, "wb").write(base64.b64decode(payload["launcher"]))
+    old_bat = os.path.join(a.out, "Play EID Flash.bat")  # launcher of 0.1.x
+    if os.path.exists(old_bat):
+        os.remove(old_bat)
+    print("Start the game with", launcher if os.path.exists(projector) else launcher + " (after adding flashplayer_32_sa.exe)")
+    show_steam_launch_option(a.out)
+    print("\nNote: the modded game uses the same save as the Steam version (don't run both at once). Steam\n"
           "achievements you unlock are granted the next time you start the normal Steam version.")
 
 

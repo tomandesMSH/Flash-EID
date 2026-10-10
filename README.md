@@ -18,10 +18,12 @@ For that, see the [original EID project](https://github.com/wofsauge/External-It
 No game files are distributed. The patcher builds the modded game from your own copy:
 
 1. Download `EID_Flash_Patcher.exe` from the [latest release](https://github.com/tomandesMSH/Flash-EID/releases/latest)
-   and put it in an empty folder.
+   and put it in the folder where you want to keep the game.
 2. Double-click it. A game window appears for a few seconds while it reads your game, then the patcher creates an
    `EID Flash` folder next to itself (and downloads Adobe's Flash Player 32 projector into it).
-3. Start the game with `EID Flash\Play EID Flash.bat`.
+3. At the end it shows a launch option (and copies it to your clipboard). Paste it into Steam: right-click
+   The Binding of Isaac > Properties > General > **Launch Options**. Steam's **Play** button then starts EID Flash.
+   Or start the game with `EID Flash\EID Flash.exe`.
 
 Prefer not to run an exe? The release also has a zip with the plain Python script (`python eid_flash_patcher.py --get-projector`).
 

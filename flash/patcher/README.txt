@@ -18,10 +18,13 @@ Requirements
 Install
 -------
 With the exe (EID_Flash_Patcher.exe):
-1. Put EID_Flash_Patcher.exe in an empty folder and double-click it.
+1. Put EID_Flash_Patcher.exe in the folder where you want to keep the game (the "EID Flash"
+   folder is created next to it) and double-click it.
 2. A game window appears for a few seconds while the patcher reads the game, then closes.
-   The patcher creates an "EID Flash" folder next to itself.
-3. Start the game with "EID Flash\Play EID Flash.bat".
+3. At the end, the patcher shows a Steam launch option and copies it to your clipboard
+   (see "Steam" below).
+4. Start the game with Steam's Play button (after pasting the launch option) or with
+   "EID Flash\EID Flash.exe".
 
 With the Python script (this zip):
 1. Unzip this folder anywhere.
@@ -29,7 +32,8 @@ With the Python script (this zip):
 
        python eid_flash_patcher.py --get-projector
 
-3. Start the game with "EID Flash\Play EID Flash.bat".
+3. Start the game with Steam's Play button (after pasting the launch option it shows) or with
+   "EID Flash\EID Flash.exe".
 
 If the game is not in your Steam library, add --game "<folder with Isaac.exe>"
 (for the exe: run it from a command prompt with that option).
@@ -37,6 +41,20 @@ If the game is not in your Steam library, add --game "<folder with Isaac.exe>"
 The exe and --get-projector download Adobe's official Flash Player 32 projector
 (flashplayer_32_sa.exe) from fpdownload.macromedia.com and check its fingerprint. You can also put
 your own copy into the "EID Flash" folder instead (exe: use --no-projector).
+
+
+Steam
+-----
+At the end, the patcher shows a launch option like this and copies it to your clipboard:
+
+    "<your folder>\EID Flash\EID Flash.exe" %command%
+
+Paste it into Steam: Library > right-click The Binding of Isaac > Properties > General >
+Launch Options. Steam's Play button then starts EID Flash instead of the normal game, and Steam
+still shows the game as running and counts your playtime.
+
+- If you move the "EID Flash" folder, run the patcher again and paste the new launch option.
+- To play the normal game again, clear the Launch Options box.
 
 
 Playing
@@ -49,7 +67,8 @@ Playing
   other's progress.
 - Steam achievements you unlock while playing the modded game are granted the next time you
   start the normal Steam version.
-- Your Steam installation is never modified. To uninstall, delete the "EID Flash" folder.
+- Your game files are never modified. To uninstall, clear the Steam launch option (if you set
+  it) and delete the "EID Flash" folder.
 
 
 Credits

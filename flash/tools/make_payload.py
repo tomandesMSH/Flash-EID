@@ -3,6 +3,7 @@
 The payload holds only EID's own content, never game code:
   - doaction: a complete DoAction tag with the compiled EID code (generated eid_data.as + as2/eid_flash.as)
   - bitmaps:  the EID font/icon atlas as a DefineBitsLossless2 body without its character id
+  - launcher: "EID Flash.exe", compiled from flash/launcher/EIDFlashLauncher.cs
 The patcher inserts both into frame 1 of the user's own game SWF (see patcher/eid_flash_patcher.py).
 
 Our AS2 is compiled on its own: a minimal one-frame SWF with an empty DoAction is generated, FFDec replaces that
@@ -85,6 +86,21 @@ def eid_version():
     return open(os.path.join(FLASH, "VERSION"), encoding="utf-8").read().strip()
 
 
+def compile_launcher(tmp):
+    """Compile flash/launcher/EIDFlashLauncher.cs ("EID Flash.exe") with the .NET Framework compiler in Windows."""
+    windir = os.environ.get("WINDIR", r"C:\Windows")
+    csc = next((p for p in (os.path.join(windir, "Microsoft.NET", fw, "v4.0.30319", "csc.exe")
+                            for fw in ("Framework64", "Framework")) if os.path.exists(p)), None)
+    if not csc:
+        sys.exit("csc.exe (.NET Framework 4) not found; it is needed to build the launcher")
+    out = os.path.join(tmp, "EID Flash.exe")
+    r = subprocess.run([csc, "-nologo", "-target:winexe", "-optimize", "-out:" + out,
+                        os.path.join(FLASH, "launcher", "EIDFlashLauncher.cs")], capture_output=True, text=True)
+    if r.returncode != 0:
+        sys.exit("launcher compile failed:\n" + r.stdout + r.stderr)
+    return open(out, "rb").read()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--debug", action="store_true", help="include the test hooks (as2/eid_debug.as)")
@@ -111,6 +127,8 @@ def make(work, out, debug=False):
         "game_sha256": TESTED_GAME_SHA256,
         "doaction": base64.b64encode(compile_as2(script, work, tmp)).decode(),
         "bitmaps": [{"name": "eid_atlas", "lossless2": base64.b64encode(lossless2_body(os.path.join(tmp, "eid_atlas.png"))).decode()}],
+        # "EID Flash.exe": starts the projector with the modded game; usable as a Steam launch option
+        "launcher": base64.b64encode(compile_launcher(tmp)).decode(),
     }
     with open(out, "w", encoding="utf-8", newline="\n") as f:
         json.dump(payload, f, indent=1)
