@@ -1,37 +1,17 @@
-This mod was created by Wofsauge and over 40 different people from all around the world!
+This project is an unofficial Flash port of External Item Descriptions (EID).
 
-If you enjoy this mod and want to help on it, check it out on GitHub: https://github.com/wofsauge/External-Item-Descriptions
+EID was created by Wofsauge and over 40 people from all around the world:
+https://github.com/wofsauge/External-Item-Descriptions
 
-# Languages
-- **Bulgarian**: by TST_Gogo_, Gothika_47
-- **Chinese (Simplified)**: by Xheepey87, frto027
-- **Czech**: by David Kapitančik. Picus, domcizzz
-- **Dutch**: by SomethingMax
-- **English**: by Wofsauge, Buurazu, Ma-rcx, AutisticGoat (Kotry), ...
-- **French**: by biobak, Nicolas Delvaux
-- **German**: by Mirades, Staubgeborener, Jake
-- **Greek**: by vanillarat
-- **Italian**: by Klyser8, Denkishi, 2G
-- **Japanese**: by prefab
-- **Korean**: by Blackcreamtea, 리셰(kohashiwakaba)
-- **Polish**: by Rickyy, Kennyluz, MERITT, DimonoKingoKongo
-- **Portuguese**: by Marcelino Cruz
-- **Romanian**: by ed._.096, Cuța Mihail-Sebastian
-- **Russian**: by hell2Pay, fly_6, Dezzelshipc and Sekaz
-- **Spanish**: by Lidia Arroyo Purroy, MartinFierro, maintained by AutisticGoat (Kotry)
-- **Brazilian Portuguese**: by LuanRoger and NotZin02
-- **Turkish**: by Cagdas Salur, Mert Dutal
-- **Ukrainian**: by x3xto
-- **Vietnamese**: by Hanzo
-
+# Used from EID
+- Bitmap font `resources/font/eid_default*`, built from PixelMplus10 (`resources/font/PixelMplus10-Regular.*`)
+- Inline icons `resources/gfx/eid_inline_icons.*` (many created by biobak)
+- Item type icons from `resources/gfx/eid_transform_icons.*` (transformation icons by [eyeguy](https://twitter.com/eyeguyart))
+- Markup tables (`flash/data/eid_markup.lua`), description format and layout
 
 # Special Thanks to
-- [The Binding of Isaac Wiki](https://bindingofisaacrebirth.fandom.com/wiki/Binding_of_Isaac:_Rebirth_Wiki) and [platinumgod.co.uk](https://platinumgod.co.uk/) for providing useful item descriptions
-- Buurazu for all the hard work improving the mod :)
-- Kittenchilly for the crane game support, Mod indicators and a lot of code improvements and fixes
-- biobak for creating a lot of inline icons and other improvements
-- [eyeguy](https://twitter.com/eyeguyart) for creating the astonishing transformation icons
-- [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities
-- [CreepSore](https://github.com/CreepSore) for creating the bag of crafting search feature
-- [Poyo](https://x.com/Poyomama02) for the great thumbnail art
-- Pattieburger for Experimental Treatment, Dataminer and Eternal D6 Stat Change Predictors
+- Wofsauge, Buurazu, Kittenchilly, biobak and all EID contributors
+- [The Binding of Isaac Wiki](https://bindingofisaac.fandom.com/) contributors (CC BY-SA 3.0) for the item information
+  the Flash descriptions are based on
+
+The Binding of Isaac © Edmund McMillen & Florian Himsl. No game code or assets are included in this repository.

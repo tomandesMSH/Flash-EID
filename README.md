@@ -1,43 +1,29 @@
-[![Steam Downloads](https://img.shields.io/steam/downloads/836319872?color=blue&label=Downloads&logo=steam&logoColor=white?label=Steam%20Downloads)](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) [![Github Downloads](https://img.shields.io/github/downloads/wofsauge/External-Item-Descriptions/total?label=Github%20Downloads)](https://github.com/wofsauge/External-Item-Descriptions) [![Discord](https://img.shields.io/discord/927985880021483571?color=blue&label=Discord&logo=Discord&logoColor=white)](https://discord.gg/435qCC6nHt)
+# External Item Descriptions for The Binding of Isaac (Flash)
 
-# External Item Descriptions
-A mod for the game "The Binding of Isaac: Rebirth" that displays useful information for items, trinkets, rooms and more!
+An EID-style overlay for the original Flash game
+([The Binding of Isaac, Steam app 113200](https://store.steampowered.com/app/113200/The_Binding_of_Isaac/),
+including Wrath of the Lamb / Eternal Edition). Walk up to an item pedestal, trinket, card or pill to see what it
+does, in the look of [External Item Descriptions](https://github.com/wofsauge/External-Item-Descriptions).
 
-This version is designed to be used with the Afterbirth+ and Repentance DLCs.
+This is an unofficial port based on EID by Wofsauge and contributors. It is not part of the EID mod for
+Rebirth / Afterbirth / Repentance; for that, see the [original project](https://github.com/wofsauge/External-Item-Descriptions).
 
 ## Features
-- **Compatible with Afterbirth+ and Repentance**
-- Displays information for all collectibles, trinkets, cards, runes, pills, horsepills and some rooms
-- Displays **additional information** like item type, charges, transformations, Spindown Dice results, Bag of Crafting recipes, TMTRAINER item effects (Detailed informations require REPENTOGON installed!), and much much more!
-- Mod support for nearly all mods!
-- Extended features available with [Repentogon](https://repentogon.com/)
-- Easy to use API ([Documentation here](https://github.com/wofsauge/External-Item-Descriptions/wiki))
-- A huge amount of custom options like:
-	- Indicators
-	- Font styles
-	- 17+ different Languages
-	- And a lot of visual options!
+- Descriptions for all 196 collectibles, 34 trinkets, 27 cards and all pills of the Flash game
+- EID's font, inline icons, bullet points, item type and charge icons
+- Stat values checked against the game's own formulas
+- Pills stay "Unidentified" until you have taken one of that color
 - **Press F2 to hide/show the descriptions!**
 
-## Supported Languages
-Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Romanian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian, Vietnamese
-
-## Versions
-There are multiple Versions of the mod, depending on which DLCs you have installed. You are currently looking at the version for Afterbirth+ and Repentance.
-
-- Rebirth (no DLCs): [MediaFire](https://www.mediafire.com/download/allrnsejnuwi1lu/External_Item_Descriptions_-_Rebirth.zip)
-- Afterbirth (first DLC): [ModdingOfIsaac.com](https://moddingofisaac.com/mod/1079/external-item-descriptions) - [MediaFire mirror](https://www.mediafire.com/file/guxc33u2x252aux/external-item-descriptions_-_Afterbirth_3.7.zip/file)
-- Afterbirth+ and Repentance: [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) - [GitHub](https://github.com/wofsauge/External-Item-Descriptions/releases)
-
 ## Installation
-For **Steam users**, simply press the "Subscribe" button on the mod's Steam Workshop page. This will automatically install the mod for you.
-For **manual mod installation** or **installation trouble shooting**, read this tutorial "[How to install the mod](https://github.com/wofsauge/External-Item-Descriptions/wiki/How-to-install-the-mod)"
-## Configuration
+No game files are distributed. The patcher builds the modded game from your own copy:
 
-Simply install &quot;[Mod Config Menu - Impure](https://steamcommunity.com/sharedfiles/filedetails/?id=3701683951)&quot;. You can use it to configure the mod while playing.
+1. Install [Python 3](https://www.python.org/downloads/) (no extra packages needed).
+2. Download the release zip, unzip it and run `python eid_flash_patcher.py --get-projector`.
+3. Start the game with `EID Flash\Play EID Flash.bat`.
 
-Alternatively, edit the `eid_config.lua` file like described [here.](https://github.com/wofsauge/External-Item-Descriptions/wiki/Edit-the-configuration-manually)
+Details: [`flash/patcher/README.txt`](flash/patcher/README.txt). Development and technical notes:
+[`flash/README.md`](flash/README.md).
 
-
-## Special Thanks to
-[Check out the credits here](https://github.com/wofsauge/External-Item-Descriptions/blob/master/CREDITS.md)
+## Credits
+See [CREDITS.md](CREDITS.md).
