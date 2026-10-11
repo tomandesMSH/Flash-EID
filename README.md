@@ -37,5 +37,14 @@ Prefer not to run an exe? The release also has a zip with the plain Python scrip
 Details: [`flash/patcher/README.txt`](flash/patcher/README.txt). Development and technical notes:
 [`flash/README.md`](flash/README.md).
 
+## Other mods
+EID Flash can be combined with the other Flash Isaac mods:
+
+- [Stats HUD](https://github.com/tomandesMSH/FlashTBoI-StatsHUD): your current stats on the left side of the screen
+- [Debug Console](https://github.com/tomandesMSH/FlashTBoI-DebugConsole): Repentance's debug console (giveitem, spawn, goto, ...)
+
+The [TBoI Flash Mods](https://github.com/tomandesMSH/FlashTBoI-Mods/releases/latest) installer lets you tick the mods
+you want and installs the newest version of each.
+
 ## Credits
 See [CREDITS.md](CREDITS.md).
