@@ -24,7 +24,7 @@ For that, see the [original EID project](https://github.com/wofsauge/External-It
 ## Installation
 No game files are distributed. The patcher builds the modded game from your own copy:
 
-1. Download `EID_Flash_Patcher.exe` from the [latest release](https://github.com/tomandesMSH/Flash-EID/releases/latest)
+1. Download `EID_Flash_Patcher.exe` from the [latest release](https://github.com/tomandesMSH/FlashTBoI-EID/releases/latest)
    and put it in the folder where you want to keep the game.
 2. Double-click it. A game window appears for a few seconds while it reads your game, then the patcher creates an
    `EID Flash` folder next to itself (and downloads Adobe's Flash Player 32 projector into it).
