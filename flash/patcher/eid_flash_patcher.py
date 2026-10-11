@@ -208,6 +208,13 @@ def get_projector(out_dir):
 LAUNCHER = "EID Flash.exe"
 
 
+def write_game_dir(out_dir, game_dir):
+    """game.txt: the game folder, where the launcher finds FlashAchievements.exe to send Steam achievements."""
+    if game_dir and os.path.exists(os.path.join(game_dir, "FlashAchievements.exe")):
+        with open(os.path.join(out_dir, "game.txt"), "w", encoding="utf-8") as f:
+            f.write(os.path.abspath(game_dir) + "\n")
+
+
 def copy_to_clipboard(text):
     try:
         subprocess.run(["clip"], input=text.encode("utf-16-le"), check=True)
@@ -265,13 +272,14 @@ def main():
     projector = get_projector(a.out) if a.get_projector else os.path.join(a.out, "flashplayer_32_sa.exe")
     launcher = os.path.join(a.out, LAUNCHER)  # starts the projector with isaac_eid.swf, ignores arguments
     open(launcher, "wb").write(base64.b64decode(payload["launcher"]))
+    write_game_dir(a.out, a.game or (None if a.swf else game) or (find_game() if os.name == "nt" else None))
     old_bat = os.path.join(a.out, "Play EID Flash.bat")  # launcher of 0.1.x
     if os.path.exists(old_bat):
         os.remove(old_bat)
     print("Start the game with", launcher if os.path.exists(projector) else launcher + " (after adding flashplayer_32_sa.exe)")
     show_steam_launch_option(a.out)
     print("\nNote: the modded game uses the same save as the Steam version (don't run both at once). Steam\n"
-          "achievements you unlock are granted the next time you start the normal Steam version.")
+          "achievements you unlock are sent to Steam by the launcher while you play (Steam must be running).")
 
 
 def run():

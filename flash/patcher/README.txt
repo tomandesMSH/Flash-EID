@@ -65,8 +65,9 @@ Playing
 - The modded game uses the same save as the Steam version: your unlocks and progress carry
   over in both directions. Don't run both versions at the same time, or one may overwrite the
   other's progress.
-- Steam achievements you unlock while playing the modded game are granted the next time you
-  start the normal Steam version.
+- Steam achievements: the launcher sends the achievements you unlock to Steam a few seconds
+  later, with the game's own FlashAchievements.exe (Steam must be running). achievements.log
+  next to the launcher shows what was sent.
 - Your game files are never modified. To uninstall, clear the Steam launch option (if you set
   it) and delete the "EID Flash" folder.
 

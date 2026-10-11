@@ -61,3 +61,36 @@ _root.eidHostTimer.onEnterFrame = function()
    }
 };
 // ---------------- end projector compatibility ----------------
+
+// ---------------- Steam achievements: save new unlocks right away ----------------
+// The game writes its save (SharedObject "so") only when it closes. The launcher sends Steam achievements from the
+// save, so the save is written as soon as something new is unlocked (_root.locker) and the launcher picks it up within
+// a few seconds. Shared by the Flash mods; the first one in the SWF sets it up.
+if(_root.tfmUnlockWatch == undefined)
+{
+   _root.tfmUnlockWatch = true;
+   _root.createEmptyMovieClip("tfmUnlocks",1048497);
+   _root.tfmUnlocks.frames = 0;
+   _root.tfmUnlocks.onEnterFrame = function()
+   {
+      this.frames++;
+      if(this.frames % 15 != 0)
+      {
+         return undefined;
+      }
+      var n = 0;
+      for(var k in _root.locker)
+      {
+         if(_root.locker[k] == true)
+         {
+            n++;
+         }
+      }
+      if(this.count != undefined && n > this.count)
+      {
+         _root.so.flush();
+      }
+      this.count = n;
+   };
+}
+// ---------------- end Steam achievements ----------------
